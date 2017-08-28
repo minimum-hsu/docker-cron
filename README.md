@@ -21,7 +21,6 @@ Period | Prefix | Example
 
 3. Replace _/path/to/folder_ in the following command, and run it.
 
-
 ```sh
 docker run -d --name cron -v /path/to/folder:/usr/local/cron minimum/cron:py3
 ```
