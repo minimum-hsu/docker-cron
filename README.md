@@ -7,6 +7,7 @@
 2. Create **executable** files with specified prefix filename.
 
    | Period | Prefix | Example |
+   | ------ | ------ | ------- |
    | 1 minute | 1m\_ or 1min\_ | 1m\_hello.sh |
    | 5 minutes | 5m\_ or 5min\_ | 5min\_hello.sh |
    | 10 minutes | 10m\_ or 10min\_ | 10m\_hello.sh |
