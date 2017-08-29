@@ -6,7 +6,7 @@ ENV CRON='/etc/crontabs'
 ENV PERIOD='/etc/periodic'
 ENV WORKSPACE='/usr/local/cron'
 
-RUN apk add --no-cache bash curl python2 py2-pip \
+RUN apk add --no-cache bash curl jq python2 py2-pip \
     && mkdir -p $CRON $WORKSPACE \
     && rm -fr $CRON/* $PERIOD/*
 

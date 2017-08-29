@@ -24,3 +24,11 @@ Period | Prefix | Example
 ```sh
 docker run -d --name cron -v /path/to/folder:/usr/local/cron minimum/cron:py3
 ```
+
+## Advanced
+
+If you want to quickly execute all files when container launched, you can run
+
+```sh
+docker run -d --name cron -v /path/to/folder:/usr/local/cron minimum/cron:py3 -f
+```

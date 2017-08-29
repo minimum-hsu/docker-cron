@@ -3,19 +3,19 @@
 set -e
 
 # support python3 pip install
-if [ ! -z "$(which pip3)" ]
+if [[ ! -z "$(which pip3)" ]]
 then
     find $WORKSPACE -type f -name requirements.txt -exec pip3 install -U -r {} pip \;
 fi
 
 # support python2 pip install
-if [ ! -z "$(which pip2)" ]
+if [[ ! -z "$(which pip2)" ]]
 then
     find $WORKSPACE -type f -name requirements.txt -exec pip2 install -U -r {} pip \;
 fi
 
 # separate executable files
-if [ -z "$1" ] && [ ! -z "$CRON" ] && [ ! -z "$PERIOD" ]
+if [[ (-z "$1" || "$1" == '-f') && ! -z "$CRON" && ! -z "$PERIOD" ]]
 then
     for file in $(find $WORKSPACE -type f -perm +100)
     do
@@ -60,6 +60,11 @@ then
             ;;
         esac
     done
+
+    if [[ "$1" == '-f' ]]
+    then
+        find -L $PERIOD -type f -perm +100 -exec {} \;
+    fi
 
     exec crond -f -c $CRON
 fi
