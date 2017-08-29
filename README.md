@@ -2,9 +2,9 @@
 
 ## How to Use
 
-1. Create a folder to store executable files which will launch by crond.
+1) Create a folder to store executable files which will launch by crond.
 
-2. Create **executable** files with specified prefix filename.
+2) Create **executable** files with specified prefix filename.
 
 Period | Prefix | Example
 ------ | ------ | -------
@@ -19,7 +19,7 @@ Period | Prefix | Example
 1 week | 1w\_ or 1week\_ | 1week\_hello.py
 1 month | 1M\_ or 1month\_ | 1M\_hello.py
 
-3. Replace _/path/to/folder_ in the following command, and run it.
+3) Replace _/path/to/folder_ in the following command, and run it.
 
 ```sh
 docker run -d --name cron -v /path/to/folder:/usr/local/cron minimum/cron:py3
