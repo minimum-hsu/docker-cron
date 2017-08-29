@@ -66,6 +66,7 @@ then
         find -L $PERIOD -type f -perm +100 -exec {} \;
     fi
 
+    echo "start crond"
     exec crond -f -c $CRON
 fi
 
