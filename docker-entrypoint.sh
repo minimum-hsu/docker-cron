@@ -19,42 +19,44 @@ if [ -z "$1" ] && [ ! -z "$CRON" ] && [ ! -z "$PERIOD" ]
 then
     for file in $(find $WORKSPACE -type f -perm +100)
     do
-        name=$(basename $file)
-        token=($(awk -v var=$name 'BEGIN{ split(var, flag, "_"); split(flag[2], file, "."); print flag[1], file[1]}'))
-        
-        case ${token[0]} in
+        fullname=$(basename $file)
+        name=${fullname%.*}
+        flag=$(awk -v var=$name 'BEGIN{ split(var, flag, "_"); print flag[1]}')
+        link=${name#${flag}_}
+
+        case $flag in
         '1m'|'1min')
-            ln -s $file $PERIOD/1min/${token[1]}
+            ln -s $file $PERIOD/1min/$link
             ;;
         '5m'|'5min')
-            ln -s $file $PERIOD/5min/${token[1]}
+            ln -s $file $PERIOD/5min/$link
             ;;
         '10m'|'10min')
-            ln -s $file $PERIOD/10min/${token[1]}
+            ln -s $file $PERIOD/10min/$link
             ;;
         '15m'|'15min')
-            ln -s $file $PERIOD/15min/${token[1]}
+            ln -s $file $PERIOD/15min/$link
             ;;
         '30m'|'30min')
-            ln -s $file $PERIOD/30min/${token[1]}
+            ln -s $file $PERIOD/30min/$link
             ;;
         '1h'|'1hour')
-            ln -s $file $PERIOD/1hour/${token[1]}
+            ln -s $file $PERIOD/1hour/$link
             ;;
         '12h'|'12hour')
-            ln -s $file $PERIOD/12hour/${token[1]}
+            ln -s $file $PERIOD/12hour/$link
             ;;
         '1d'|'1day')
-            ln -s $file $PERIOD/1day/${token[1]}
+            ln -s $file $PERIOD/1day/$link
             ;;
         '1w'|'1week')
-            ln -s $file $PERIOD/1week/${token[1]}
+            ln -s $file $PERIOD/1week/$link
             ;;
         '1M'|'1month')
-            ln -s $file $PERIOD/1month/${token[1]}
+            ln -s $file $PERIOD/1month/$link
             ;;
         *)
-            echo "No support ${token[0]}"
+            echo "No support $fullname"
             ;;
         esac
     done
